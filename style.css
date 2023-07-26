@@ -1,0 +1,27 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Karla:wght@200&family=Nunito+Sans:wght@200&family=Oswald&family=Rubik+Puddles&family=Yuji+Hentaigana+Akari&display=swap");
+.container {
+  margin-top: 100px;
+}
+.logo {
+  font-family: "Kablammo", cursive;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+}
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: cornflowerblue;
+  padding: 30px 30px;
+  font-family: "Dancing Script", cursive;
+}
+.btn{
+  padding: 2px 2px;
+  border: 1px solid black;
+  cursor: pointer;
+
+}
