@@ -1,18 +1,33 @@
 <?php
 require_once ('./connection.php');
-// if (!isset($_SESSION['email'])) {
-//   header('Location:./signIn.php');
-// } else {
+try{
+  session_start();
+  $image = $_SESSION['image'];
+  if (!isset($_SESSION['email'])) {
+    header('Location:./signIn.php');
+    exit();
+  } else {
   $res = $database->fetch();
-//  }
-if(isset($_GET['submit'])){
-  $delete_id = $_GET['deleteid'];
-  $res = $database->delete($delete_id);
-  while($res){
-    echo "<script>console.log($res)</script>";
-    echo "<div> $res</div>";
+    }
+  if (isset($_GET['deleteid'])) {
+    $delete_id = $_GET['deleteid'];
+    $response = $database->delete($delete_id);
+    while ($res) {
+      echo "<script type='text/javascript'>alert('$response');</script>";
+      // echo "<div> $response</div>";
+      break;
+    }
   }
+  if(isset($_GET['updateid'])){
+    $id= $_GET['updateid'];
+    echo"<div>'this is id'.$id</div>";
+    $_SESSION['id'] = $id;
+    Header("Location:./update.php");
+  }
+}catch(Exception $e){
+  echo "view page".$e->getMessage();
 }
+
 ?>
 <html lang="en-US">
   <head>
@@ -50,20 +65,22 @@ if(isset($_GET['submit'])){
         $count++;
     ?>
     <tr>
-      <th scope="row"><?php echo $r['Id'] ?></th>
+      <th scope="row"><?php echo $count ?></th>
       <td><?php echo $r['fname'] ?></td>
       <td><?php echo $r['lname'] ?></td>
       <td><?php echo $r['email'] ?></td>
       <td><?php echo $r['address'] ?></td>
       <td><?php echo $r['city'] ?></td>
       <td><?php echo $r['zip'] ?></td>
-      <td><a href="./edit.php"><i class="fa-regular fa-pen-to-square"></i></a></td>
-      <td><a href="./view.php?deleteid=<?php echo $r['Id']?>"><button type="submit" class="btn"><i class="fa-solid fa-xmark"></i></button></a></td>
+      <td><button type="submit" class="btn"><a href="./view.php?updateid=<?php echo $r['Id'] ?>"><i class="fa-regular fa-pen-to-square"></i></a></button></td>
+      <td><a href="./view.php?deleteid=<?php echo $r['Id'] ?>"><button type="submit" class="btn"><i class="fa-solid fa-xmark"></i></button></a></td>
+      <td><img src="<?php echo $image?>" alt="pics" height="40px" width="40px"/></td>
     </tr>
   </tbody>
   <?php
       }
-      ?> 
+      
+        ?> 
 </table>
 
   </div>

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
-    <header>
+    <header class="header">
       <nav class="navbar navbar-expand-lg  navbar" style="background-color: #e3f2fd;">
   <div class="container-fluid">
     <a class="navbar-brand logo" href="#">B-Alpha School of Fashion</a>
