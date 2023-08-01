@@ -1,4 +1,4 @@
-<?php  session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
   <html lang="en-US">
     <head>
@@ -13,7 +13,7 @@
     <body>
       <header>
         <?php
-        include("./global_header.php");
+          include ('./global_header.php');
         ?>
       </header>
     <main class="index_main">
@@ -51,60 +51,54 @@
         </div>
     </main>
         <?php
-        require_once ('./connection.php');
+          require_once ('./connection.php');
           try {
-            if($_SESSION['id']){
-                $id = $_SESSION['id'];
-                $response= $database->edit($id);              
-                if (isset($_POST)&!empty($_POST)){ 
-                $fname=trim($_POST['fname']);
-                $lname=trim($_POST['lname']);
-                $email=trim($_POST['inputEmail4']);
-                $address=trim($_POST['inputAddress']);
-                $city=trim($_POST['inputCity']);
-                $zip=trim($_POST['inputZip']); 
-                    while($info=mysqli_fetch_assoc($response)){
-                      if(empty($fname)){
-                        $fname=$info['fname'];
-                      }
-                      else{
-                        $fname =$fname;
-                      }
-                      if(empty($lname)){
-                        $lname=$info['lname'];
-                      }
-                      else{
-                        $lname =$lname;
-                      }
-                      if(empty($email)){
-                        $email=$info['email'];
-                      }
-                      else{
-                        $email =$email ;
-                      }
-                      if(empty($address)){
-                        $address=$info['address'];
-                      }
-                      else{
-                        $address =$address;
-                      }
-                      if(empty($city)){
-                        $city=$info['city'];
-                      }
-                      else{
-                        $city =$city ;
-                      }
-                      if(empty($zip)){
-                        $zip=$info['zip'];
-                      }
-                      else{
-                        $zip =$zip ;
-                      }
-                    }
-                    $res = $database->update($fname,$lname,$email,$address,$city,$zip,$id);
-              }  
+            if ($_SESSION['id']) {
+              $id = $_SESSION['id'];
+              $response = $database->edit($id);
+              if (isset($_POST) & !empty($_POST)) {
+                $fname = trim($_POST['fname']);
+                $lname = trim($_POST['lname']);
+                $email = trim($_POST['inputEmail4']);
+                $address = trim($_POST['inputAddress']);
+                $city = trim($_POST['inputCity']);
+                $zip = trim($_POST['inputZip']);
+                while ($info = mysqli_fetch_assoc($response)) {
+                  if (empty($fname)) {
+                    $fname = $info['fname'];
+                  } else {
+                    $fname = $fname;
+                  }
+                  if (empty($lname)) {
+                    $lname = $info['lname'];
+                  } else {
+                    $lname = $lname;
+                  }
+                  if (empty($email)) {
+                    $email = $info['email'];
+                  } else {
+                    $email = $email;
+                  }
+                  if (empty($address)) {
+                    $address = $info['address'];
+                  } else {
+                    $address = $address;
+                  }
+                  if (empty($city)) {
+                    $city = $info['city'];
+                  } else {
+                    $city = $city;
+                  }
+                  if (empty($zip)) {
+                    $zip = $info['zip'];
+                  } else {
+                    $zip = $zip;
+                  }
+                }
+                $res = $database->update($fname, $lname, $email, $address, $city, $zip, $id);
+                header('Location:./view.php');
+              }
             }
-            
           } catch (Exception $e) {
             echo 'There is an error in the Index' . $e->getMessage();
           }

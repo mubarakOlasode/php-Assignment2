@@ -27,7 +27,7 @@ html {
 .header {
   height: 30px;
 }
-footer {
+/* .footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -35,7 +35,7 @@ footer {
   padding: 30px 30px;
   font-family: "Dancing Script", cursive;
   margin-top: 125px;
-}
+} */
 .btn {
   padding: 2px 2px;
   border: 1px solid black;
@@ -58,8 +58,6 @@ footer {
   width: 400px;
   border: 1px solid white;
   border-radius: 15px;
-  /* background-color: #e3f2fd;
-   */
   color: white;
   background: rgb(0, 212, 255);
   background: rgb(0, 0, 0);
