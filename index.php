@@ -21,7 +21,7 @@ session_start();
     <main class="index_main">
         <p class="p_sign">Already have an account?<a href="./signIn.php" class="sign_in">sign in</a></p>
         <div class="container"> 
-          <form class="row g-3" method="POST">
+          <form class="row g-3" method="POST" enctype="multipart/form-data">
             <div class="col-md-6">
               <label for="fname" class="form-label">First Name</label>
               <input type="text" class="form-control" name="fname" id="inputEmail1" required>
@@ -61,7 +61,6 @@ session_start();
             <div class="col-md-2">
               <label for="img">Select image:</label>
               <input type="file" id="img" name="img" accept="image/*">
-              <!-- <input type="submit" name="img_submit"> -->
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">Sign up</button>
@@ -74,8 +73,10 @@ session_start();
           try {
             require_once ('./connection.php');
             if (isset($_POST) & !empty($_POST)) {
-              $image = $_POST['img'];
-              $_SESSION['image'] = $image;
+              $images = $_FILES['img']['name'];
+              $image_url = 'img/' . $images;
+              $temp_folder = $_FILES['img']['tmp_name'];
+              move_uploaded_file($temp_folder, $image_url);
               $fname = trim($_POST['fname']);
               $lname = trim($_POST['lname']);
               $email = trim($_POST['inputEmail4']);
@@ -103,9 +104,9 @@ session_start();
               }
               if ($check) {
                 $password = hash('sha512', $password);
-                $res = $database->create($fname, $lname, $email, $address, $city, $zip, $password);
+                $res = $database->create($fname, $lname, $email, $address, $city, $zip, $password, $image_url);
                 if ($res) {
-                  echo "<p>$res</p>";
+                  echo "<script type='text/javascript'>alert($res);</script>";
                 }
               }
             }

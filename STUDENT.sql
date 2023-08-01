@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 01, 2023 at 07:34 AM
+-- Generation Time: Aug 01, 2023 at 11:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,17 +35,18 @@ CREATE TABLE `STUDENT` (
   `address` varchar(20) NOT NULL,
   `city` varchar(20) NOT NULL,
   `zip` varchar(10) NOT NULL,
-  `Password` varchar(500) NOT NULL
+  `Password` varchar(500) NOT NULL,
+  `image` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `STUDENT`
 --
 
-INSERT INTO `STUDENT` (`Id`, `fname`, `lname`, `email`, `address`, `city`, `zip`, `Password`) VALUES
-(3, 'Jagnoor', 'kaur', 'JagnoorKaur@yahoo.com', '62 Forest Manor', 'North York', 'M2J 0B6', 'd84dfda65d717a4d081885626bcf2a8283d55cb9cf6e800e341af447b18ecb3ae0e7bcb065e67e80aa13f5111e46d95d6c99d5cbc831d46bf64be96520077f38'),
-(4, 'Mubarak', 'Olasode', 'olasodem2@yahoo.com', '62 Forest Manor', 'North York', 'M2J 0B6', '168be3470e7b016e9acc87db2aa311abe57c55cd3380cc5a8e7258f7e445198fe46ad79765645f5f5a25ddf7abc73a8a2c00dc269ea641aa0346d4944928429b'),
-(5, 'Adeyinka', 'AbdulMalik', 'mubarakolasode@yahoo.com', '70 Parkway Manor', 'North York', 'M2J 0B6', '559abe5e105f55a91ff0a14c1ac40e38d7d239ffda698c2b2d3773569d2fdbf3e73785d673d305a13de41acead367606a4eb292587441485a5b49f8c35a96e1e');
+INSERT INTO `STUDENT` (`Id`, `fname`, `lname`, `email`, `address`, `city`, `zip`, `Password`, `image`) VALUES
+(18, 'Mubarak', 'Olasode', 'olasodem2@yahoo.com', '62 Forest Manor', 'scarborough', 'M2J 0B6', '168be3470e7b016e9acc87db2aa311abe57c55cd3380cc5a8e7258f7e445198fe46ad79765645f5f5a25ddf7abc73a8a2c00dc269ea641aa0346d4944928429b', 'img/irene-kredenets-dwKiHoqqxk8-unsplash.jpg'),
+(19, 'Rodiyyah', 'Alimi', 'olasodem2@yahoo.com', '62 Forest parkway', 'North York', 'M2J 0B6', 'c758b6405fa7049f3a300b8b5aedd612a6ec17d4088d505fca384de2136ff08d465976b4c977043475a8f9e79c52df2014637ddc47d472358712395e1e29772f', 'img/usama-akram-kP6knT7tjn4-unsplash.jpg'),
+(20, 'AbdulMalik', 'Olasode', 'olasodemubaraka@gmail.com', '72 Donald Manor', 'North York', 'M2J 0B6', 'e3eb5ce7351512f4d94b0308e713c427df30bda62af925bfcf0b16ffd2c3caff8c77c23236b01e4ba45dc805bd57fddadb092ba267949d8d622078f3791e4322', 'img/sebastien-chiron-1LFXMyrFRNw-unsplash.jpg');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +66,7 @@ ALTER TABLE `STUDENT`
 -- AUTO_INCREMENT for table `STUDENT`
 --
 ALTER TABLE `STUDENT`
-  MODIFY `Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

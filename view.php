@@ -1,31 +1,31 @@
 <?php
 require_once ('./connection.php');
-try{
+try {
   session_start();
   $image = $_SESSION['image'];
   if (!isset($_SESSION['email'])) {
     header('Location:./signIn.php');
-    exit();
+    exit ();
   } else {
-  $res = $database->fetch();
-    }
+    $res = $database->fetch();
+  }
   if (isset($_GET['deleteid'])) {
     $delete_id = $_GET['deleteid'];
     $response = $database->delete($delete_id);
+    header('Location:./view.php');
     while ($res) {
       echo "<script type='text/javascript'>alert('$response');</script>";
-      // echo "<div> $response</div>";
       break;
     }
   }
-  if(isset($_GET['updateid'])){
-    $id= $_GET['updateid'];
-    echo"<div>'this is id'.$id</div>";
+  if (isset($_GET['updateid'])) {
+    $id = $_GET['updateid'];
+    echo "<div>'this is id'.$id</div>";
     $_SESSION['id'] = $id;
-    Header("Location:./update.php");
+    Header('Location:./update.php');
   }
-}catch(Exception $e){
-  echo "view page".$e->getMessage();
+} catch (Exception $e) {
+  echo 'view page' . $e->getMessage();
 }
 
 ?>
@@ -72,14 +72,14 @@ try{
       <td><?php echo $r['address'] ?></td>
       <td><?php echo $r['city'] ?></td>
       <td><?php echo $r['zip'] ?></td>
+      <td><img src="<?= $r['image'] ?>" alt="pics" height="40px" width="40px"/></td>
       <td><button type="submit" class="btn"><a href="./view.php?updateid=<?php echo $r['Id'] ?>"><i class="fa-regular fa-pen-to-square"></i></a></button></td>
       <td><a href="./view.php?deleteid=<?php echo $r['Id'] ?>"><button type="submit" class="btn"><i class="fa-solid fa-xmark"></i></button></a></td>
-      <td><img src="<?php echo $image?>" alt="pics" height="40px" width="40px"/></td>
     </tr>
   </tbody>
   <?php
       }
-      
+
         ?> 
 </table>
 

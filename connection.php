@@ -16,9 +16,9 @@ class Db_connection
         };
     }
 
-    function create($fname, $lname, $email, $address, $city, $zip, $password)
+    function create($fname, $lname, $email, $address, $city, $zip, $password, $image_url)
     {
-        $db_sql = "INSERT INTO Student (fname,lname,email,address,city,zip,password) VALUES ('$fname','$lname','$email','$address','$city','$zip','$password')";
+        $db_sql = "INSERT INTO Student (fname,lname,email,address,city,zip,password,image) VALUES ('$fname','$lname','$email','$address','$city','$zip','$password','$image_url')";
         $res = mysqli_query($this->connection, $db_sql);
         if ($res) {
             return 'Entry created';
@@ -33,12 +33,14 @@ class Db_connection
         $res = mysqli_query($this->connection, $sql);
         return $res;
     }
+
     function fetch()
     {
-        $sql = "SELECT * FROM Student";
+        $sql = 'SELECT * FROM Student';
         $res = mysqli_query($this->connection, $sql);
         return $res;
     }
+
     function edit($id)
     {
         $sql = "SELECT * FROM Student WHERE Id= $id";
@@ -46,20 +48,23 @@ class Db_connection
         return $res;
     }
 
-    function delete($id){
-        $query= "DELETE FROM Student WHERE Id= '$id'";
-        $res= mysqli_query($this->connection, $query);
-        return "The data has been succesfully deleted";
+    function delete($id)
+    {
+        $query = "DELETE FROM Student WHERE Id= '$id'";
+        $res = mysqli_query($this->connection, $query);
+        return 'The data has been succesfully deleted';
     }
-    function update($fname,$lname,$email,$address,$city,$zip,$id){
-        try{
+
+    function update($fname, $lname, $email, $address, $city, $zip, $id)
+    {
+        try {
             $query = "UPDATE Student SET fname='$fname',lname='$lname',email='$email',address='$address',city='$city', zip='$zip' WHERE Id='$id'";
-            $res = mysqli_query($this->connection,$query);
-            if($res){
-                echo "Your information is updated";
+            $res = mysqli_query($this->connection, $query);
+            if ($res) {
+                echo 'Your information is updated';
             }
-        }catch(Exception $e){
-            echo"SQL".$e->getMessage();
+        } catch (Exception $e) {
+            echo 'SQL' . $e->getMessage();
         }
     }
 }
